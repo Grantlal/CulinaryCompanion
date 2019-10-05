@@ -1,7 +1,7 @@
 
-### Preparation
+### Getting Started
 
-- Please must install Java 1.7  or even higher version
+- Please must install Java
 - install Node.js / NPM
 - Clone Repository
 
