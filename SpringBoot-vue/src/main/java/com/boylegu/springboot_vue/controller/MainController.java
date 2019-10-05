@@ -26,7 +26,7 @@ import java.util.*;
 
 
 @RestController
-@RequestMapping("/api/persons")
+@RequestMapping("/api/recipes")
 public class MainController {
 
     @Autowired
@@ -35,8 +35,8 @@ public class MainController {
     @Value(("${com.boylegu.paginatio.max-per-page}"))
     Integer maxPerPage;
 
-    @RequestMapping(value = "/sex", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getSexAll() {
+    @RequestMapping(value = "/name", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getRecipesAll() {
 
         /*
          * @api {GET} /api/persons/sex Get all sexList
@@ -45,7 +45,7 @@ public class MainController {
          * @apiVersion 1.0.0
          * @apiExample {httpie} Example usage:
          *
-         *     http /api/persons/sex
+         *     http /api/recipes
          *
          * @apiSuccess {String} label
          * @apiSuccess {String} value
@@ -71,38 +71,25 @@ public class MainController {
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Map<String, PaginationMultiTypeValuesHelper> getPersonsAll(
+    public Map<String, PaginationMultiTypeValuesHelper> getRecipes(
             @RequestParam(value = "page", required = false) Integer pages,
-            @RequestParam("sex") String sex,
-            @RequestParam("email") String email
+            @RequestParam("sex") String name,
+            @RequestParam("email") String restriction
     ) {
 
         /*
-         *   @api {GET} /api/persons   Get all or a part of person info
+         *   @api {GET} /api/Recipes   Get all or a part of recipe info
          *   @apiName GetAllInfoList
          *   @apiGroup Info Manage
          *   @apiVersion 1.0.0
          *
-         *   @apiExample {httpie} Example usage: (support combinatorial search)
+         *       http /api/recipes
          *
-         *       All person：
-         *       http /api/persons
+         *       http /api/recipes?name=xxx&restriction=xxx
+         *       http /api/recipes?name=XXX
          *
-         *       You can according to 'sex | email' or 'sex & email'
-         *       http /api/persons?sex=xxx&email=xx
-         *       http /api/persons?sex=xxx
-         *       http /api/persons?email=xx
-         *
-         *   @apiParam {String} sex
-         *   @apiParam {String} email
-         *
-         *   @apiSuccess {String} create_datetime
-         *   @apiSuccess {String} email
-         *   @apiSuccess {String} id
-         *   @apiSuccess {String} phone
-         *   @apiSuccess {String} sex
-         *   @apiSuccess {String} username
-         *   @apiSuccess {String} zone
+         *   @apiParam {String} name
+         *   @apiParam {String} restriction
          */
 
         if (pages == null) {
@@ -117,7 +104,7 @@ public class MainController {
 
         PaginationFormatting paginInstance = new PaginationFormatting();
 
-        return paginInstance.filterQuery(sex, email, pageable);
+        return paginInstance.filterQuery(name, restriction, pageable);
     }
 
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
