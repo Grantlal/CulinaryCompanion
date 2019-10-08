@@ -1,12 +1,14 @@
 <template>
     <div class="wrapper">
-        <db-header></db-header>
+        <db-header>
+        </db-header>
         <el-row class="container">
             <el-col :span="4" class="menu">
                 <db-sidebar></db-sidebar>
             </el-col>
             <el-col :span="20" class="content">
-                <db-table></db-table>
+                    <h4 v-model = "recipeExample">
+                    {{recipeExample}} </h4>     
             </el-col>
         </el-row>
         <el-row>
@@ -24,9 +26,26 @@
     import DbTable from './components/DbTable.vue'
     import DbFooter from './components/DbFooter.vue'
     import ElRow from "element-ui/packages/row/src/row";
+    import { UriBuilder } from 'uribuilder';
 
+    let title = getRecipe();
+    let recipeName = JSON.stringify(title);
+    let recipeExample = recipeName.url;
+
+    //let testURI = `https://api.edamam.com/search?q=chickentikka&app_id=9a0c84a3&app_key=45bb00840fe3a634d119f86ff069c199`;
+    //1const response = fetch(testURI);
+    //const myJson = response.json();
+
+    //console.log(myJson);
+    //const ingredientList = myJson.ingredientLines;
     export default {
         name: 'app',
+        data() {
+            return {
+                recipeExample: getRecipe(),
+                email: null,
+            }
+        },
         components: {
             ElRow, DbHeader,
             DbSidebar,
@@ -36,6 +55,19 @@
         },
     }
 
+
+    async function getRecipe() {
+    try {
+
+
+        const response = await fetch(`https://api.edamam.com/search?q=chicken&app_id=9a0c84a3&app_key=45bb00840fe3a634d119f86ff069c199`)
+        .then((resp) => resp.json());
+        //let recipeStatus = JSON.parse(response);
+        console.log(response);
+    } catch (error) {
+        console.error(error);
+    }
+}
 </script>
 
 <style>
