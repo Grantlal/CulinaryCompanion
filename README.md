@@ -1,8 +1,10 @@
 
 ### Getting Started
 
-- Please must install Java
 - install Node.js / NPM
+###### Node
+https://nodejs.org/en/
+
 - Clone Repository
 
         git clone 
@@ -13,6 +15,7 @@
 ### Installation  
         
 - Build front-end environment
+You may or may not have to install uribuilder, Hopefully my package-lock change fixed that. Who knows though, keeping it for sanitys sake.
 
         cd springboot_vue/frontend
 
@@ -20,13 +23,12 @@
         
         npm install uribuilder
 
-### Usage
+### Back-end
+- Go here :) 
+```
+https://github.com/Grantlal/CulinaryCompanionAPI
+```
 
-- Run back-end server
-
-        cd springboot_vue/target/
-        
-        java -jar springboot_vue-0.0.1-SNAPSHOT.jar
 
 - Run Front-end Web Page
 
