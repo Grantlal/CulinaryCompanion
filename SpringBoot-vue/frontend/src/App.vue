@@ -59,10 +59,11 @@
     async function getRecipe() {
     try {
 
-
-        const response = await fetch(`https://api.edamam.com/search?q=chicken&app_id=9a0c84a3&app_key=45bb00840fe3a634d119f86ff069c199`)
-        .then((resp) => resp.json());
-        //let recipeStatus = JSON.parse(response);
+        //Saving this to know this call has worked :)
+        // https://api.edamam.com/search?q=chicken&app_id=9a0c84a3&app_key=45bb00840fe3a634d119f86ff069c199
+        const url = `http://localhost:8080/recipes`;
+        const response = await fetch(url);
+        //.then((resp) => resp.stringify());
         console.log(response);
     } catch (error) {
         console.error(error);
