@@ -2,7 +2,6 @@
 ### Getting Started
 
 - install Node.js / NPM
-###### Node
 https://nodejs.org/en/
 
 - Clone Repository
