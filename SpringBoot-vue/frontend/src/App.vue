@@ -8,7 +8,8 @@
             </el-col>
             <el-col :span="20" class="content">
                     <h4 v-model = "recipeExample">
-                    {{recipeExample}} </h4>     
+                    {{recipeExample}} </h4>  
+                    <button v-on:click='getRecipe()' class='mediumButtons'> Find CHICKEN </button>   
             </el-col>
         </el-row>
         <el-row>
@@ -28,24 +29,30 @@
     import ElRow from "element-ui/packages/row/src/row";
     import { UriBuilder } from 'uribuilder';
 
-    let title = getRecipe();
-    let recipeName = JSON.stringify(title);
-    let recipeExample = recipeName.url;
-
-    //let testURI = `https://api.edamam.com/search?q=chickentikka&app_id=9a0c84a3&app_key=45bb00840fe3a634d119f86ff069c199`;
-    //1const response = fetch(testURI);
-    //const myJson = response.json();
-
-    //console.log(myJson);
-    //const ingredientList = myJson.ingredientLines;
     export default {
-        name: 'app',
         data() {
             return {
-                recipeExample: getRecipe(),
-                email: null,
+                recipeExample: null,
+                recipe1: null,
             }
         },
+        methods: {
+            getRecipe: async function(event) {
+                try {
+                    //Saving this to know this call has worked :)
+                    // https://api.edamam.com/search?q=chicken&app_id=9a0c84a3&app_key=45bb00840fe3a634d119f86ff069c199
+                    const url = `http://localhost:8080/recipes`;
+                    const response = await fetch(url)
+                    .then((resp) => resp.json());
+                    console.log(response);
+                    this.recipeExample = response.firstRecipe;
+                    return response.firstRecipe;
+                } catch (error) {
+                console.error(error);
+                }
+            }
+        },
+        name: 'app',
         components: {
             ElRow, DbHeader,
             DbSidebar,
@@ -54,24 +61,12 @@
             DbFooter
         },
     }
-
-
-    async function getRecipe() {
-    try {
-
-        //Saving this to know this call has worked :)
-        // https://api.edamam.com/search?q=chicken&app_id=9a0c84a3&app_key=45bb00840fe3a634d119f86ff069c199
-        const url = `http://localhost:8080/recipes`;
-        const response = await fetch(url);
-        //.then((resp) => resp.stringify());
-        console.log(response);
-    } catch (error) {
-        console.error(error);
-    }
-}
 </script>
 
 <style>
+
+    .mediumButtons {
+    }
 
     element.style {
         background-color: rgb(10, 47, 88);
