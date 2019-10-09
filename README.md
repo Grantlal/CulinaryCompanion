@@ -17,6 +17,8 @@
         cd springboot_vue/frontend
 
         npm install 
+        
+        npm install uribuilder
 
 ### Usage
 
