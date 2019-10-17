@@ -8,7 +8,7 @@ https://nodejs.org/en/
 
         git clone 
         
-        cd springboot_vue
+        cd client
 
 
 ### Installation  
@@ -16,11 +16,13 @@ https://nodejs.org/en/
 - Build front-end environment
 You may or may not have to install uribuilder, Hopefully my package-lock change fixed that. Who knows though, keeping it for sanitys sake.
 
-        cd springboot_vue/frontend
+        cd client
 
         npm install 
         
         npm install uribuilder
+
+        npm install vue-material
 
 ### Back-end
 - Go here :) 
@@ -31,7 +33,7 @@ https://github.com/Grantlal/CulinaryCompanionAPI
 
 - Run Front-end Web Page
 
-        cd springboot_vue/frontend
+        cd client
 
         npm run dev
 

@@ -7,9 +7,8 @@
                 <db-sidebar></db-sidebar>
             </el-col>
             <el-col :span="20" class="content">
-                    <h4 v-model = "recipeExample">
-                    {{recipeExample}} </h4>  
-                    <button v-on:click='getRecipe()' class='mediumButtons'> Find CHICKEN </button>   
+                    <h4> {{recipeExample}} </h4>  
+                    <md-button v-on:click.native='getRecipe()' class='md-raised'> Find CHICKEN </md-button>   
             </el-col>
         </el-row>
         <el-row>
