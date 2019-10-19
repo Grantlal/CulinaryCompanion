@@ -47,6 +47,7 @@
                     this.recipeExample = response.firstRecipe;
                     return response.firstRecipe;
                 } catch (error) {
+					this.recipeExample = 'Error connecting to database.'
                 console.error(error);
                 }
             }
@@ -64,8 +65,6 @@
 
 <style>
 
-    .mediumButtons {
-    }
 
     element.style {
         background-color: rgb(10, 47, 88);
