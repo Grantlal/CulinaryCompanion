@@ -1,4 +1,13 @@
 [1015/102409.776:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [1015/102409.777:ERROR:crash_report_database_win.cc(469)] failed to stat report
+<<<<<<< Updated upstream
 [1017/135358.360:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [1017/135358.361:ERROR:crash_report_database_win.cc(469)] failed to stat report
+=======
+[1019/225725.180:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[1019/225725.180:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[1019/230108.558:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[1019/230108.558:ERROR:crash_report_database_win.cc(469)] failed to stat report
+>>>>>>> Stashed changes
+[1019/230206.658:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[1019/230206.662:ERROR:crash_report_database_win.cc(469)] failed to stat report
