@@ -1,16 +1,27 @@
 <template>
   <div class="page-container" style="height:100%;">
     <md-app>
-      <md-app-toolbar class="md-primary" style="background-image: linear-gradient(to right, rgb(229, 247, 228), rgb(201, 250, 197));">
+      <md-app-toolbar
+        class="md-primary"
+        style="background-image: linear-gradient(to right, rgb(229, 247, 228), rgb(201, 250, 197));"
+      >
         <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
           <md-icon>menu</md-icon>
+        </md-button>
+        <md-button class="md-icon-button" v-if="menuVisible">
+          <md-icon style="opacity: 0;">menu</md-icon>
         </md-button>
         <span id="title">Cullinary Companion</span>
       </md-app-toolbar>
 
-      <md-app-drawer :md-active.sync="menuVisible" md-persistent="full"  style="background-image: linear-gradient(to bottom left, rgb(229, 247, 228), rgb(201, 250, 197)); max-height:100%;">
+      <md-app-drawer
+        :md-active.sync="menuVisible"
+        md-persistent="full"
+        style="background-image: linear-gradient(to bottom left, rgb(229, 247, 228), rgb(201, 250, 197)); max-height:100%;"
+      >
+        <img src="https://github.com/Grantlal/CulinaryCompanion/blob/Andrew/images/food.jpg">
         <md-toolbar class="md-transparent" md-elevation="0">
-          <span>Navigation</span>
+          <span>Filters</span>
 
           <div class="md-toolbar-section-end">
             <md-button class="md-icon-button md-dense" @click="toggleMenu">
@@ -21,28 +32,24 @@
 
         <md-list>
           <md-list-item>
-            <md-icon>move_to_inbox</md-icon>
-            <span class="md-list-item-text">Inbox</span>
+            <md-checkbox v-model="array" value="1">Filter Option 1</md-checkbox>
           </md-list-item>
 
           <md-list-item>
-            <md-icon>send</md-icon>
-            <span class="md-list-item-text">Sent Mail</span>
+            <md-checkbox v-model="array" value="1">Filter Option 1</md-checkbox>
           </md-list-item>
 
           <md-list-item>
-            <md-icon>delete</md-icon>
-            <span class="md-list-item-text">Trash</span>
+            <md-checkbox v-model="array" value="1">Filter Option 1</md-checkbox>
           </md-list-item>
 
           <md-list-item>
-            <md-icon>error</md-icon>
-            <span class="md-list-item-text">Spam</span>
+            <md-checkbox v-model="array" value="1">Filter Option 1</md-checkbox>
           </md-list-item>
         </md-list>
       </md-app-drawer>
 
-      <md-app-content style="background-color:white;">
+      <md-app-content id="cont">
         <h4>{{recipeExample}}</h4>
         <md-button v-on:click.native="getRecipe()" class="md-raised">Find CHICKEN</md-button>
       </md-app-content>
@@ -51,15 +58,21 @@
 </template>
 
 <script>
-import DbHeader from "./components/DbHeader.vue";
-import DbFilterinput from "./components/DbFilterinput.vue";
-import DbTable from "./components/DbTable.vue";
-import DbFooter from "./components/DbFooter.vue";
 import { UriBuilder } from "uribuilder";
 
 export default {
   data() {
     return {
+      array: [],
+      boolean: false,
+      string: null,
+      novalue: null,
+      disabled: true,
+      obj1: {name: 'obj1'},
+      obj2: {name: 'obj2'},
+      obj: null,
+      indeterminate: true,
+
       recipeExample: null,
       recipe1: null,
       menuVisible: false
@@ -85,12 +98,7 @@ export default {
     }
   },
   name: "app",
-  components: {
-    DbHeader,
-    DbFilterinput,
-    DbTable,
-    DbFooter
-  }
+  components: {}
 };
 </script>
 
@@ -100,7 +108,18 @@ export default {
   font-size: 50px;
   line-height: 70px;
 }
+.md-checkbox {
+    display: flex;
+  }
 
+  table {
+    width: 100%;
+    table-layout: fixed;
+
+    th {
+      text-align: left;
+    }
+  }
 .md-app {
   min-height: 350px;
   border: 1px solid rgba(#000, 0.12);
@@ -112,6 +131,7 @@ export default {
   width: 230px;
   max-width: calc(100vw - 125px);
 }
+
 element.style {
   background-color: rgb(10, 47, 88);
 }
