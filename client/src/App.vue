@@ -19,7 +19,6 @@
         md-persistent="full"
         style="background-image: linear-gradient(to bottom left, rgb(229, 247, 228), rgb(201, 250, 197)); max-height:100%;"
       >
-        <img src="https://github.com/Grantlal/CulinaryCompanion/blob/Andrew/images/food.jpg">
         <md-toolbar class="md-transparent" md-elevation="0">
           <span>Filters</span>
 
@@ -32,19 +31,25 @@
 
         <md-list>
           <md-list-item>
-            <md-checkbox v-model="array" value="1">Filter Option 1</md-checkbox>
+            <md-checkbox v-model="opt1" value="1">Filter Option 1</md-checkbox>
+            <h1>{{opt1}}</h1>
           </md-list-item>
 
           <md-list-item>
-            <md-checkbox v-model="array" value="1">Filter Option 1</md-checkbox>
+            <md-checkbox v-model="opt2" value="2">Filter Option 1</md-checkbox>
+            <h1>{{opt2}}</h1>
           </md-list-item>
 
           <md-list-item>
-            <md-checkbox v-model="array" value="1">Filter Option 1</md-checkbox>
+            <md-checkbox v-model="opt3" value="3">Filter Option 1</md-checkbox>
+
+            <h1>{{opt3}}</h1>
           </md-list-item>
 
           <md-list-item>
-            <md-checkbox v-model="array" value="1">Filter Option 1</md-checkbox>
+            <md-checkbox v-model="opt4" value="4">Filter Option 1</md-checkbox>
+
+            <h1>{{opt4}}</h1>
           </md-list-item>
         </md-list>
       </md-app-drawer>
@@ -68,8 +73,8 @@ export default {
       string: null,
       novalue: null,
       disabled: true,
-      obj1: {name: 'obj1'},
-      obj2: {name: 'obj2'},
+      obj1: { name: "obj1" },
+      obj2: { name: "obj2" },
       obj: null,
       indeterminate: true,
 
@@ -109,17 +114,17 @@ export default {
   line-height: 70px;
 }
 .md-checkbox {
-    display: flex;
-  }
+  display: flex;
+}
 
-  table {
-    width: 100%;
-    table-layout: fixed;
+table {
+  width: 100%;
+  table-layout: fixed;
 
-    th {
-      text-align: left;
-    }
+  th {
+    text-align: left;
   }
+}
 .md-app {
   min-height: 350px;
   border: 1px solid rgba(#000, 0.12);
@@ -132,18 +137,7 @@ export default {
   max-width: calc(100vw - 125px);
 }
 
-element.style {
-  background-color: rgb(10, 47, 88);
-}
 
-body {
-  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
-    "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-  margin: 0;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
 
 .el-menu,
 body,
