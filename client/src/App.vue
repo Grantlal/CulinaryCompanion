@@ -11,7 +11,7 @@
         <md-button class="md-icon-button" v-if="menuVisible">
           <md-icon style="opacity: 0;">menu</md-icon>
         </md-button>
-        <span id="title">Cullinary Companion</span>
+        <span id="title">Culinary Companion</span>
         <md-tabs>
       <md-tab id="tab-recipe" md-label="Recipes"></md-tab>
       <md-tab id="tab-Techniques" md-label="Techniques"></md-tab>
