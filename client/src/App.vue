@@ -12,6 +12,12 @@
           <md-icon style="opacity: 0;">menu</md-icon>
         </md-button>
         <span id="title">Cullinary Companion</span>
+        <md-tabs>
+      <md-tab id="tab-recipe" md-label="Recipes"></md-tab>
+      <md-tab id="tab-Techniques" md-label="Techniques"></md-tab>
+      <md-tab id="tab-profile" md-label="Profile"></md-tab>
+      <md-tab id="tab-favorites" md-label="Favorites"></md-tab>
+    </md-tabs>
       </md-app-toolbar>
 
       <md-app-drawer
