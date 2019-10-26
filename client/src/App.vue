@@ -12,12 +12,42 @@
           <md-icon style="opacity: 0;">menu</md-icon>
         </md-button>
         <span id="title">Cullinary Companion</span>
-        <md-tabs>
-      <md-tab id="tab-recipe" md-label="Recipes"></md-tab>
-      <md-tab id="tab-Techniques" md-label="Techniques"></md-tab>
-      <md-tab id="tab-profile" md-label="Profile"></md-tab>
-      <md-tab id="tab-favorites" md-label="Favorites"></md-tab>
-    </md-tabs>
+
+        <md-menu md-size="medium" md-align-trigger>
+          <md-button md-menu-trigger>Recipes</md-button>
+          <md-menu-content>
+            <md-menu-item>Advanced Search</md-menu-item>
+            <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+            <md-menu-item>Surprise Me!</md-menu-item>
+          </md-menu-content>
+        </md-menu>
+
+        <md-menu md-size="medium" md-align-trigger>
+          <md-button md-menu-trigger>Techniques</md-button>
+          <md-menu-content>
+            <md-menu-item>Advanced Search</md-menu-item>
+            <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+            <md-menu-item>Surprise Me!</md-menu-item>
+          </md-menu-content>
+        </md-menu>
+
+        <md-menu md-size="medium" md-align-trigger>
+          <md-button md-menu-trigger>Favorites</md-button>
+          <md-menu-content>
+            <md-menu-item>Advanced Search</md-menu-item>
+            <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+            <md-menu-item>Surprise Me!</md-menu-item>
+          </md-menu-content>
+        </md-menu>
+
+        <md-menu md-size="medium" md-align-trigger>
+          <md-button md-menu-trigger>Profile</md-button>
+          <md-menu-content>
+            <md-menu-item>Advanced Search</md-menu-item>
+            <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+            <md-menu-item>Surprise Me!</md-menu-item>
+          </md-menu-content>
+        </md-menu>
       </md-app-toolbar>
 
       <md-app-drawer
@@ -37,32 +67,30 @@
 
         <md-list>
           <md-list-item>
-            <md-checkbox v-model="opt1" value="1">Filter Option 1</md-checkbox>
-            <h1>{{opt1}}</h1>
+           <md-checkbox v-model="opt1" value="1">Filter Option 1</md-checkbox>
+            <h3>{{opt1}}</h3>
           </md-list-item>
 
           <md-list-item>
-            <md-checkbox v-model="opt2" value="2">Filter Option 1</md-checkbox>
-            <h1>{{opt2}}</h1>
+            <md-checkbox v-model="opt2" value="2">Filter Option 2</md-checkbox>
+            <h3>{{opt2}}</h3>
           </md-list-item>
 
           <md-list-item>
-            <md-checkbox v-model="opt3" value="3">Filter Option 1</md-checkbox>
-
-            <h1>{{opt3}}</h1>
+            <md-checkbox v-model="opt3" value="3">Filter Option 3</md-checkbox>
+            <h3>{{opt3}}</h3>
           </md-list-item>
 
           <md-list-item>
-            <md-checkbox v-model="opt4" value="4">Filter Option 1</md-checkbox>
-
-            <h1>{{opt4}}</h1>
+            <md-checkbox v-model="opt4" value="4">Filter Option 4</md-checkbox>
+            <h3>{{opt4}}</h3>
           </md-list-item>
         </md-list>
       </md-app-drawer>
 
       <md-app-content id="cont">
         <h4>{{recipeExample}}</h4>
-        <md-button v-on:click.native="getRecipe()" class="md-raised">Find CHICKEN</md-button>
+        <md-button v-on:click.native="getRecipe()" class="md-raised">Find Chicken!!!</md-button>
       </md-app-content>
     </md-app>
   </div>
@@ -74,15 +102,10 @@ import { UriBuilder } from "uribuilder";
 export default {
   data() {
     return {
-      array: [],
-      boolean: false,
-      string: null,
-      novalue: null,
-      disabled: true,
-      obj1: { name: "obj1" },
-      obj2: { name: "obj2" },
-      obj: null,
-      indeterminate: true,
+      opt1: null,
+      opt2: null,
+      opt3: null,
+      opt4: null,
 
       recipeExample: null,
       recipe1: null,
@@ -114,6 +137,10 @@ export default {
 </script>
 
 <style>
+.md-theme-default {
+  color: black !important;
+  background-color: transparent !important;
+}
 #title {
   min-height: 70px;
   font-size: 50px;
@@ -142,10 +169,6 @@ table {
   width: 230px;
   max-width: calc(100vw - 125px);
 }
-
-
-
-.el-menu,
 body,
 html {
   height: 100%;
