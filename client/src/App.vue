@@ -2,68 +2,70 @@
   <div class="page-container" style="height:100%;">
     <md-app md-waterfall md-mode="fixed">
       <md-app-toolbar class="md-primary andrew-nav">
+        <md-button
+          style="float:left:"
+          class="md-icon-button"
+          @click="toggleMenu"
+          v-if="!menuVisible"
+        >
+          <md-icon>menu</md-icon>
+        </md-button>
+        <md-button class="md-icon-button" v-if="menuVisible">
+          <md-icon style="opacity: 0;">menu</md-icon>
+        </md-button>
+        <span id="title">Cullinary Companion</span>
 
-          <md-button style="float:left:" class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
-            <md-icon>menu</md-icon>
-          </md-button>
-          <md-button class="md-icon-button" v-if="menuVisible">
-            <md-icon style="opacity: 0;">menu</md-icon>
-          </md-button>
-          <span id="title">Cullinary Companion</span>
+        <md-menu style="margin-left: 10px;" md-size="medium" md-align-trigger>
+          <md-button md-menu-trigger>Recipes</md-button>
+          <md-menu-content>
+            <md-menu-item>Advanced Search</md-menu-item>
+            <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+            <md-menu-item>Surprise Me!</md-menu-item>
+          </md-menu-content>
+        </md-menu>
 
-          <md-menu style="float:left:" md-size="medium" md-align-trigger>
-            <md-button md-menu-trigger>Recipes</md-button>
-            <md-menu-content>
-              <md-menu-item>Advanced Search</md-menu-item>
-              <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
-              <md-menu-item>Surprise Me!</md-menu-item>
-            </md-menu-content>
-          </md-menu>
+        <md-menu md-size="medium" md-align-trigger>
+          <md-button md-menu-trigger>Techniques</md-button>
+          <md-menu-content>
+            <md-menu-item>Advanced Search</md-menu-item>
+            <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+            <md-menu-item>Surprise Me!</md-menu-item>
+          </md-menu-content>
+        </md-menu>
 
-          <md-menu md-size="medium" md-align-trigger>
-            <md-button md-menu-trigger>Techniques</md-button>
-            <md-menu-content>
-              <md-menu-item>Advanced Search</md-menu-item>
-              <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
-              <md-menu-item>Surprise Me!</md-menu-item>
-            </md-menu-content>
-          </md-menu>
+        <md-menu md-size="medium" md-align-trigger>
+          <md-button md-menu-trigger>Favorites</md-button>
+          <md-menu-content>
+            <md-menu-item>Advanced Search</md-menu-item>
+            <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+            <md-menu-item>Surprise Me!</md-menu-item>
+          </md-menu-content>
+        </md-menu>
 
-          <md-menu md-size="medium" md-align-trigger>
-            <md-button md-menu-trigger>Favorites</md-button>
-            <md-menu-content>
-              <md-menu-item>Advanced Search</md-menu-item>
-              <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
-              <md-menu-item>Surprise Me!</md-menu-item>
-            </md-menu-content>
-          </md-menu>
-
-          <div style="margin-left: auto; min-width: 300px; max-width:500px;">
-		  <md-field style="min-width: 300px; max-width:500px;">
+        <div style="margin-left: auto; min-width: 300px; max-width:500px;">
+          <md-field style="min-width: 300px; max-width:500px;">
             <label>Search Recipes</label>
             <md-input v-model="query"></md-input>
           </md-field>
-		  </div>
-          <md-button 
-		  class="md-raised"
-            style="background-image: linear-gradient(to bottom left, rgb(229, 247, 228), rgb(201, 250, 197));"
-          >GO!</md-button>
-		  
+        </div>
 
-          <md-menu md-size="medium" md-align-trigger>
-            <md-button style="width: 100%;" md-menu-trigger>
-              <md-icon
-                style="border: 1px solid black; border-radius: 100%; height: 100%; width: 100%;"
-              >person</md-icon>
-            </md-button>
-            <md-menu-content>
-              <md-menu-item>Advanced Search</md-menu-item>
-              <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
-              <md-menu-item>Surprise Me!</md-menu-item>
-            </md-menu-content>
-          </md-menu>
+        <md-button
+          class="md-raised"
+          style="background-image: linear-gradient(to bottom left, rgb(229, 247, 228), rgb(201, 250, 197));"
+        >GO!</md-button>
+
+        <md-menu md-size="medium" md-align-trigger>
+          <md-button style="width: 100%;" md-menu-trigger>
+            <md-icon
+              style="border: 1px solid black; border-radius: 100%; height: 100%; width: 100%;"
+            >person</md-icon>
+          </md-button>
+          <md-menu-content>
+            <md-menu-item>Account Settings</md-menu-item>
+            <md-menu-item>Logout</md-menu-item>
+          </md-menu-content>
+        </md-menu>
       </md-app-toolbar>
-
 
       <md-app-drawer
         :md-active.sync="menuVisible"
@@ -115,7 +117,10 @@
         <h4>{{recipeExample}}</h4>
         <md-button v-on:click.native="getRecipe()" class="md-raised">Find Chicken!!!</md-button>
 
-        <RecipeCard></RecipeCard>
+        <div class="recipes">
+		<RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard>
+		<RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard>
+		</div>
       </md-app-content>
     </md-app>
   </div>
@@ -165,8 +170,12 @@ export default {
 </script>
 
 <style>
+.recipes {
+	display: inline-block;
+}
+
 .andrew-nav {
-	display: flex;
+  display: flex;
   background-image: linear-gradient(
     to right,
     rgb(229, 247, 228),
