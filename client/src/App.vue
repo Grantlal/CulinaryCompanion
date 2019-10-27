@@ -1,59 +1,74 @@
 <template>
   <div class="page-container" style="height:100%;">
-    <md-app>
-      <md-app-toolbar
-        class="md-primary"
-        style="background-image: linear-gradient(to right, rgb(229, 247, 228), rgb(201, 250, 197));"
-      >
-        <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
-          <md-icon>menu</md-icon>
-        </md-button>
-        <md-button class="md-icon-button" v-if="menuVisible">
-          <md-icon style="opacity: 0;">menu</md-icon>
-        </md-button>
-        <span id="title">Cullinary Companion</span>
+    <md-app md-waterfall md-mode="fixed">
+      <md-app-toolbar class="md-primary andrew-nav">
 
-        <md-menu md-size="medium" md-align-trigger>
-          <md-button md-menu-trigger>Recipes</md-button>
-          <md-menu-content>
-            <md-menu-item>Advanced Search</md-menu-item>
-            <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
-            <md-menu-item>Surprise Me!</md-menu-item>
-          </md-menu-content>
-        </md-menu>
+          <md-button style="float:left:" class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
+            <md-icon>menu</md-icon>
+          </md-button>
+          <md-button class="md-icon-button" v-if="menuVisible">
+            <md-icon style="opacity: 0;">menu</md-icon>
+          </md-button>
+          <span id="title">Cullinary Companion</span>
 
-        <md-menu md-size="medium" md-align-trigger>
-          <md-button md-menu-trigger>Techniques</md-button>
-          <md-menu-content>
-            <md-menu-item>Advanced Search</md-menu-item>
-            <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
-            <md-menu-item>Surprise Me!</md-menu-item>
-          </md-menu-content>
-        </md-menu>
+          <md-menu style="float:left:" md-size="medium" md-align-trigger>
+            <md-button md-menu-trigger>Recipes</md-button>
+            <md-menu-content>
+              <md-menu-item>Advanced Search</md-menu-item>
+              <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+              <md-menu-item>Surprise Me!</md-menu-item>
+            </md-menu-content>
+          </md-menu>
 
-        <md-menu md-size="medium" md-align-trigger>
-          <md-button md-menu-trigger>Favorites</md-button>
-          <md-menu-content>
-            <md-menu-item>Advanced Search</md-menu-item>
-            <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
-            <md-menu-item>Surprise Me!</md-menu-item>
-          </md-menu-content>
-        </md-menu>
+          <md-menu md-size="medium" md-align-trigger>
+            <md-button md-menu-trigger>Techniques</md-button>
+            <md-menu-content>
+              <md-menu-item>Advanced Search</md-menu-item>
+              <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+              <md-menu-item>Surprise Me!</md-menu-item>
+            </md-menu-content>
+          </md-menu>
 
-        <md-menu md-size="medium" md-align-trigger>
-          <md-button md-menu-trigger>Profile</md-button>
-          <md-menu-content>
-            <md-menu-item>Advanced Search</md-menu-item>
-            <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
-            <md-menu-item>Surprise Me!</md-menu-item>
-          </md-menu-content>
-        </md-menu>
+          <md-menu md-size="medium" md-align-trigger>
+            <md-button md-menu-trigger>Favorites</md-button>
+            <md-menu-content>
+              <md-menu-item>Advanced Search</md-menu-item>
+              <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+              <md-menu-item>Surprise Me!</md-menu-item>
+            </md-menu-content>
+          </md-menu>
+
+          <div style="margin-left: auto; min-width: 300px; max-width:500px;">
+		  <md-field style="min-width: 300px; max-width:500px;">
+            <label>Search Recipes</label>
+            <md-input v-model="query"></md-input>
+          </md-field>
+		  </div>
+          <md-button 
+		  class="md-raised"
+            style="background-image: linear-gradient(to bottom left, rgb(229, 247, 228), rgb(201, 250, 197));"
+          >GO!</md-button>
+		  
+
+          <md-menu md-size="medium" md-align-trigger>
+            <md-button style="width: 100%;" md-menu-trigger>
+              <md-icon
+                style="border: 1px solid black; border-radius: 100%; height: 100%; width: 100%;"
+              >person</md-icon>
+            </md-button>
+            <md-menu-content>
+              <md-menu-item>Advanced Search</md-menu-item>
+              <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+              <md-menu-item>Surprise Me!</md-menu-item>
+            </md-menu-content>
+          </md-menu>
       </md-app-toolbar>
+
 
       <md-app-drawer
         :md-active.sync="menuVisible"
         md-persistent="full"
-        style="background-image: linear-gradient(to bottom left, rgb(229, 247, 228), rgb(201, 250, 197)); max-height:100%;"
+        style="width: 15%; min-width: min-content; max-width: 400px; background-image: linear-gradient(to bottom left, rgb(229, 247, 228), rgb(201, 250, 197)); max-height:100%;"
       >
         <md-toolbar class="md-transparent" md-elevation="0">
           <span>Filters</span>
@@ -67,23 +82,31 @@
 
         <md-list>
           <md-list-item>
-           <md-checkbox v-model="opt1" value="1">Filter Option 1</md-checkbox>
-            <h3>{{opt1}}</h3>
+            <md-checkbox id="lactosebox" v-model="opt1">
+              <label for="lactosebox" v-if="opt1" style="text-decoration: line-through;">Lactose</label>
+              <label for="lactosebox" v-if="!opt1">Lactose</label>
+            </md-checkbox>
           </md-list-item>
 
           <md-list-item>
-            <md-checkbox v-model="opt2" value="2">Filter Option 2</md-checkbox>
-            <h3>{{opt2}}</h3>
+            <md-checkbox id="meatbox" v-model="opt2">
+              <label for="meatbox" v-if="opt2" style="text-decoration: line-through;">Meats</label>
+              <label for="meatbox" v-if="!opt2">Meats</label>
+            </md-checkbox>
           </md-list-item>
 
           <md-list-item>
-            <md-checkbox v-model="opt3" value="3">Filter Option 3</md-checkbox>
-            <h3>{{opt3}}</h3>
+            <md-checkbox id="peanutbox" v-model="opt3">
+              <label for="peanutbox" v-if="opt3" style="text-decoration: line-through;">Nuts</label>
+              <label for="peanutbox" v-if="!opt3">Nuts</label>
+            </md-checkbox>
           </md-list-item>
 
           <md-list-item>
-            <md-checkbox v-model="opt4" value="4">Filter Option 4</md-checkbox>
-            <h3>{{opt4}}</h3>
+            <md-checkbox id="diabeticbox" v-model="opt4">
+              <label for="diabeticbox" v-if="opt4" style="text-decoration: line-through;">Diabetic</label>
+              <label for="diabeticbox" v-if="!opt4">Diabetic</label>
+            </md-checkbox>
           </md-list-item>
         </md-list>
       </md-app-drawer>
@@ -91,6 +114,8 @@
       <md-app-content id="cont">
         <h4>{{recipeExample}}</h4>
         <md-button v-on:click.native="getRecipe()" class="md-raised">Find Chicken!!!</md-button>
+
+        <RecipeCard></RecipeCard>
       </md-app-content>
     </md-app>
   </div>
@@ -98,6 +123,7 @@
 
 <script>
 import { UriBuilder } from "uribuilder";
+import RecipeCard from "./components/RecipeCard.vue";
 
 export default {
   data() {
@@ -120,7 +146,7 @@ export default {
       try {
         //Saving this to know this call has worked :)
         // https://api.edamam.com/search?q=chicken&app_id=9a0c84a3&app_key=45bb00840fe3a634d119f86ff069c199
-        const url = `http://localhost:8080/recipes`;
+        var url = `http://localhost:8080/recipes`;
         const response = await fetch(url).then(resp => resp.json());
         console.log(response);
         this.recipeExample = response.firstRecipe;
@@ -132,11 +158,22 @@ export default {
     }
   },
   name: "app",
-  components: {}
+  components: {
+    RecipeCard
+  }
 };
 </script>
 
 <style>
+.andrew-nav {
+	display: flex;
+  background-image: linear-gradient(
+    to right,
+    rgb(229, 247, 228),
+    rgb(201, 250, 197)
+  );
+}
+
 .md-theme-default {
   color: black !important;
   background-color: transparent !important;

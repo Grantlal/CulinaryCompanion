@@ -5,7 +5,7 @@ import App from './App.vue'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 Vue.use(VueMaterial)
-import 'vue-material/dist/theme/default.css'
+import 'vue-material/dist/theme/black-green-light.css'
 // Andrew
 
 // more grace import third package !
