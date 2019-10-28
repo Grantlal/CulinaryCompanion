@@ -5,7 +5,7 @@
         class="md-primary"
         style="background-image: linear-gradient(to right, rgb(229, 247, 228), rgb(201, 250, 197));"
       >
-        <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
+        <md-button class="md-icon-button" id="leftMenuButton" @click="toggleMenu" v-if="!menuVisible">
           <md-icon>menu</md-icon>
         </md-button>
         <md-button class="md-icon-button" v-if="menuVisible">
