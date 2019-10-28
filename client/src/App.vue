@@ -15,30 +15,30 @@
         </md-button>
         <span id="title">Cullinary Companion</span>
 
-        <md-menu style="margin-left: 10px;" md-size="medium" md-align-trigger>
+        <md-menu class="bc-trans" style="margin-left: 10px;" md-size="medium" md-align-trigger>
           <md-button md-menu-trigger>Recipes</md-button>
           <md-menu-content>
-            <md-menu-item>Advanced Search</md-menu-item>
-            <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
-            <md-menu-item>Surprise Me!</md-menu-item>
+            <md-menu-item class="bc-white">Advanced Search</md-menu-item>
+            <md-menu-item class="bc-white" v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+            <md-menu-item class="bc-white">Surprise Me!</md-menu-item>
           </md-menu-content>
         </md-menu>
 
-        <md-menu md-size="medium" md-align-trigger>
+        <md-menu class="bc-trans" md-size="medium" md-align-trigger>
           <md-button md-menu-trigger>Techniques</md-button>
           <md-menu-content>
-            <md-menu-item>Advanced Search</md-menu-item>
-            <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
-            <md-menu-item>Surprise Me!</md-menu-item>
+            <md-menu-item class="bc-white">Advanced Search</md-menu-item>
+            <md-menu-item class="bc-white" v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+            <md-menu-item class="bc-white">Surprise Me!</md-menu-item>
           </md-menu-content>
         </md-menu>
 
-        <md-menu md-size="medium" md-align-trigger>
+        <md-menu class="bc-trans" md-size="medium" md-align-trigger>
           <md-button md-menu-trigger>Favorites</md-button>
           <md-menu-content>
-            <md-menu-item>Advanced Search</md-menu-item>
-            <md-menu-item v-on:click.native="data = 'asdf'">Browse</md-menu-item>
-            <md-menu-item>Surprise Me!</md-menu-item>
+            <md-menu-item class="bc-white">Advanced Search</md-menu-item>
+            <md-menu-item class="bc-white" v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+            <md-menu-item class="bc-white">Surprise Me!</md-menu-item>
           </md-menu-content>
         </md-menu>
 
@@ -54,15 +54,15 @@
           style="background-image: linear-gradient(to bottom left, rgb(229, 247, 228), rgb(201, 250, 197));"
         >GO!</md-button>
 
-        <md-menu md-size="medium" md-align-trigger>
+        <md-menu class="bc-trans" md-size="medium" md-align-trigger>
           <md-button style="width: 100%;" md-menu-trigger>
             <md-icon
               style="border: 1px solid black; border-radius: 100%; height: 100%; width: 100%;"
             >person</md-icon>
           </md-button>
           <md-menu-content>
-            <md-menu-item>Account Settings</md-menu-item>
-            <md-menu-item>Logout</md-menu-item>
+            <md-menu-item class="bc-white">Account Settings</md-menu-item>
+            <md-menu-item class="bc-white">Logout</md-menu-item>
           </md-menu-content>
         </md-menu>
       </md-app-toolbar>
@@ -82,32 +82,44 @@
           </div>
         </md-toolbar>
 
-        <md-list>
+        <md-list class="bc-trans">
           <md-list-item>
             <md-checkbox id="lactosebox" v-model="opt1">
-              <label for="lactosebox" v-if="opt1" style="text-decoration: line-through;">Lactose</label>
-              <label for="lactosebox" v-if="!opt1">Lactose</label>
+              <label @click="opt1=!opt1" for="lactosebox" v-if="opt1" style="cursor:pointer; text-decoration: line-through;">Lactose</label>
+              <label @click="opt1=!opt1" for="lactosebox" v-if="!opt1" style="cursor:pointer;">Lactose</label>
             </md-checkbox>
           </md-list-item>
 
-          <md-list-item>
-            <md-checkbox id="meatbox" v-model="opt2">
-              <label for="meatbox" v-if="opt2" style="text-decoration: line-through;">Meats</label>
-              <label for="meatbox" v-if="!opt2">Meats</label>
+          <md-list-item md-expand :md-expanded.sync="expandNews">
+          <span class="md-list-item-text">Meats</span>
+
+          <md-list slot="md-expand" style="margin-left: 50px;" class="bc-trans">
+            <md-checkbox id="porkbox" v-model="optpork">
+              <label @click="optpork=!optpork" for="porkbox" v-if="optpork" style="cursor:pointer; text-decoration: line-through;">Pork</label>
+              <label @click="optpork=!optpork" for="porkbox" v-if="!optpork" style="cursor:pointer;">Pork</label>
             </md-checkbox>
-          </md-list-item>
+            <md-checkbox id="beefbox" v-model="optbeef">
+              <label @click="optbeef=!optbeef" for="beefbox" v-if="optbeef" style="cursor:pointer; text-decoration: line-through;">Beef</label>
+              <label @click="optbeef=!optbeef" for="beefbox" v-if="!optbeef" style="cursor:pointer;">Beef</label>
+            </md-checkbox>
+            <md-checkbox id="chickenbox" v-model="optchicken">
+              <label @click="optchicken=!optchicken" for="chickenbox" v-if="optchicken" style="cursor:pointer; text-decoration: line-through;">Chicken</label>
+              <label @click="optchicken=!optchicken" for="chickenbox" v-if="!optchicken" style="cursor:pointer;">Chicken</label>
+            </md-checkbox>
+          </md-list>
+        </md-list-item>
 
           <md-list-item>
             <md-checkbox id="peanutbox" v-model="opt3">
-              <label for="peanutbox" v-if="opt3" style="text-decoration: line-through;">Nuts</label>
-              <label for="peanutbox" v-if="!opt3">Nuts</label>
+              <label @click="opt3=!opt3" for="peanutbox" v-if="opt3" style="cursor:pointer; text-decoration: line-through;">Nuts</label>
+              <label @click="opt3=!opt3" for="peanutbox" v-if="!opt3" style="cursor:pointer;">Nuts</label>
             </md-checkbox>
           </md-list-item>
 
           <md-list-item>
             <md-checkbox id="diabeticbox" v-model="opt4">
-              <label for="diabeticbox" v-if="opt4" style="text-decoration: line-through;">Diabetic</label>
-              <label for="diabeticbox" v-if="!opt4">Diabetic</label>
+              <label @click="opt4=!opt4" for="diabeticbox" v-if="opt4" style="cursor:pointer; text-decoration: line-through;">Diabetic</label>
+              <label @click="opt4=!opt4" for="diabeticbox" v-if="!opt4" style="cursor:pointer;">Diabetic</label>
             </md-checkbox>
           </md-list-item>
         </md-list>
@@ -115,9 +127,9 @@
 
       <md-app-content id="cont">
         <h4>{{recipeExample}}</h4>
-        <md-button v-on:click.native="getRecipe()" class="md-raised">Find Chicken!!!</md-button>
+        <md-button v-on:click.native="getRecipe()" style="display: none" class="md-raised">Find Chicken!!!</md-button>
 
-        <div class="recipes">
+        <div>
 		<RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard>
 		<RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard>
 		</div>
@@ -134,9 +146,12 @@ export default {
   data() {
     return {
       opt1: null,
-      opt2: null,
+      optpork: null,
+      optbeef: null,
+      optchicken: null,
       opt3: null,
-      opt4: null,
+	  opt4: null,
+	  query: null,
 
       recipeExample: null,
       recipe1: null,
@@ -170,8 +185,24 @@ export default {
 </script>
 
 <style>
+.bc-trans {
+	background-color: transparent !important;
+}
+.bc-white {
+	background-color: white !important;
+}
+
+.md-menu {
+	background-color: white;
+}
+
 .recipes {
 	display: inline-block;
+	margin: 10px;
+}
+
+.recipes:hover {
+	cursor: pointer;
 }
 
 .andrew-nav {
@@ -185,7 +216,7 @@ export default {
 
 .md-theme-default {
   color: black !important;
-  background-color: transparent !important;
+  background-color: transparent;
 }
 #title {
   min-height: 70px;
