@@ -13,7 +13,7 @@
         <md-button class="md-icon-button" v-if="menuVisible">
           <md-icon style="opacity: 0;">menu</md-icon>
         </md-button>
-        <span id="title">Cullinary Companion</span>
+        <span id="title">Culinary Companion</span>
 
         <md-menu class="bc-trans" style="margin-left: 10px;" md-size="medium" md-align-trigger>
           <md-button md-menu-trigger>Recipes</md-button>
