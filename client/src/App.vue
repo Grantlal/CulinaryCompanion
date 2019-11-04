@@ -51,6 +51,7 @@
 
         <md-button
           class="md-raised"
+          v-on:click.native="getRecipe()"
           style="background-image: linear-gradient(to bottom left, rgb(229, 247, 228), rgb(201, 250, 197));"
         >GO!</md-button>
 
@@ -85,54 +86,105 @@
         <md-list class="bc-trans">
           <md-list-item>
             <md-checkbox id="lactosebox" v-model="opt1">
-              <label @click="opt1=!opt1" for="lactosebox" v-if="opt1" style="cursor:pointer; text-decoration: line-through;">Lactose</label>
-              <label @click="opt1=!opt1" for="lactosebox" v-if="!opt1" style="cursor:pointer;">Lactose</label>
+              <label
+                @click="opt1=!opt1"
+                for="lactosebox"
+                v-if="opt1"
+                style="cursor:pointer; text-decoration: line-through;"
+              >Lactose</label>
+              <label
+                @click="opt1=!opt1"
+                for="lactosebox"
+                v-if="!opt1"
+                style="cursor:pointer;"
+              >Lactose</label>
             </md-checkbox>
           </md-list-item>
 
-          <md-list-item md-expand :md-expanded.sync="expandNews">
-          <span class="md-list-item-text">Meats</span>
+          <md-list-item md-expand>
+            <span class="md-list-item-text">Meats</span>
 
-          <md-list slot="md-expand" style="margin-left: 50px;" class="bc-trans">
-            <md-checkbox id="porkbox" v-model="optpork">
-              <label @click="optpork=!optpork" for="porkbox" v-if="optpork" style="cursor:pointer; text-decoration: line-through;">Pork</label>
-              <label @click="optpork=!optpork" for="porkbox" v-if="!optpork" style="cursor:pointer;">Pork</label>
-            </md-checkbox>
-            <md-checkbox id="beefbox" v-model="optbeef">
-              <label @click="optbeef=!optbeef" for="beefbox" v-if="optbeef" style="cursor:pointer; text-decoration: line-through;">Beef</label>
-              <label @click="optbeef=!optbeef" for="beefbox" v-if="!optbeef" style="cursor:pointer;">Beef</label>
-            </md-checkbox>
-            <md-checkbox id="chickenbox" v-model="optchicken">
-              <label @click="optchicken=!optchicken" for="chickenbox" v-if="optchicken" style="cursor:pointer; text-decoration: line-through;">Chicken</label>
-              <label @click="optchicken=!optchicken" for="chickenbox" v-if="!optchicken" style="cursor:pointer;">Chicken</label>
-            </md-checkbox>
-          </md-list>
-        </md-list-item>
+            <md-list slot="md-expand" style="margin-left: 50px;" class="bc-trans">
+              <md-checkbox id="porkbox" v-model="optpork">
+                <label
+                  @click="optpork=!optpork"
+                  for="porkbox"
+                  v-if="optpork"
+                  style="cursor:pointer; text-decoration: line-through;"
+                >Pork</label>
+                <label
+                  @click="optpork=!optpork"
+                  for="porkbox"
+                  v-if="!optpork"
+                  style="cursor:pointer;"
+                >Pork</label>
+              </md-checkbox>
+              <md-checkbox id="beefbox" v-model="optbeef">
+                <label
+                  @click="optbeef=!optbeef"
+                  for="beefbox"
+                  v-if="optbeef"
+                  style="cursor:pointer; text-decoration: line-through;"
+                >Beef</label>
+                <label
+                  @click="optbeef=!optbeef"
+                  for="beefbox"
+                  v-if="!optbeef"
+                  style="cursor:pointer;"
+                >Beef</label>
+              </md-checkbox>
+              <md-checkbox id="chickenbox" v-model="optchicken">
+                <label
+                  @click="optchicken=!optchicken"
+                  for="chickenbox"
+                  v-if="optchicken"
+                  style="cursor:pointer; text-decoration: line-through;"
+                >Chicken</label>
+                <label
+                  @click="optchicken=!optchicken"
+                  for="chickenbox"
+                  v-if="!optchicken"
+                  style="cursor:pointer;"
+                >Chicken</label>
+              </md-checkbox>
+            </md-list>
+          </md-list-item>
 
           <md-list-item>
             <md-checkbox id="peanutbox" v-model="opt3">
-              <label @click="opt3=!opt3" for="peanutbox" v-if="opt3" style="cursor:pointer; text-decoration: line-through;">Nuts</label>
+              <label
+                @click="opt3=!opt3"
+                for="peanutbox"
+                v-if="opt3"
+                style="cursor:pointer; text-decoration: line-through;"
+              >Nuts</label>
               <label @click="opt3=!opt3" for="peanutbox" v-if="!opt3" style="cursor:pointer;">Nuts</label>
             </md-checkbox>
           </md-list-item>
 
           <md-list-item>
             <md-checkbox id="diabeticbox" v-model="opt4">
-              <label @click="opt4=!opt4" for="diabeticbox" v-if="opt4" style="cursor:pointer; text-decoration: line-through;">Diabetic</label>
-              <label @click="opt4=!opt4" for="diabeticbox" v-if="!opt4" style="cursor:pointer;">Diabetic</label>
+              <label
+                @click="opt4=!opt4"
+                for="diabeticbox"
+                v-if="opt4"
+                style="cursor:pointer; text-decoration: line-through;"
+              >Diabetic</label>
+              <label
+                @click="opt4=!opt4"
+                for="diabeticbox"
+                v-if="!opt4"
+                style="cursor:pointer;"
+              >Diabetic</label>
             </md-checkbox>
           </md-list-item>
         </md-list>
       </md-app-drawer>
 
       <md-app-content id="cont">
-        <h4>{{recipeExample}}</h4>
-        <md-button v-on:click.native="getRecipe()" style="display: none" class="md-raised">Find Chicken!!!</md-button>
-
-        <div>
-		<RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard>
-		<RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard><RecipeCard class="recipes"></RecipeCard>
-		</div>
+        <div id="recipecards">
+          <RecipeCard class="recipes" title="title" dietLabels="dietlabels" instructions="instructions" image="https://www.edamam.com/web-img/fd1/fd1afed1849c44f5185720394e363b4e.jpg"></RecipeCard>
+        </div>
       </md-app-content>
     </md-app>
   </div>
@@ -142,6 +194,8 @@
 import { UriBuilder } from "uribuilder";
 import RecipeCard from "./components/RecipeCard.vue";
 
+var recipes = null;
+
 export default {
   data() {
     return {
@@ -150,7 +204,7 @@ export default {
       optbeef: null,
       optchicken: null,
       opt3: null,
-	  opt4: null,
+      opt4: null,
 	  query: null,
 
       recipeExample: null,
@@ -165,12 +219,17 @@ export default {
     getRecipe: async function(event) {
       try {
         //Saving this to know this call has worked :)
-        // https://api.edamam.com/search?q=chicken&app_id=9a0c84a3&app_key=45bb00840fe3a634d119f86ff069c199
-        var url = `http://localhost:8080/recipes`;
-        const response = await fetch(url).then(resp => resp.json());
-        console.log(response);
-        this.recipeExample = response.firstRecipe;
-        return response.firstRecipe;
+		// https://api.edamam.com/search?q=chicken&app_id=9a0c84a3&app_key=45bb00840fe3a634d119f86ff069c199
+        if (this.query !== null) {
+          var url = `http://localhost:8080/recipes/?search=${this.query}`;
+          const response = await fetch(url).then(resp => resp.json());
+          console.log(response);
+		  recipes = response.firstRecipe;
+          return response.firstRecipe;
+		}
+		else {
+			this.recipeExample = "Search is null";
+		}
       } catch (error) {
         this.recipeExample = "Error connecting to database.";
         console.error(error);
@@ -186,23 +245,23 @@ export default {
 
 <style>
 .bc-trans {
-	background-color: transparent !important;
+  background-color: transparent !important;
 }
 .bc-white {
-	background-color: white !important;
+  background-color: white !important;
 }
 
 .md-menu {
-	background-color: white;
+  background-color: white;
 }
 
 .recipes {
-	display: inline-block;
-	margin: 10px;
+  display: inline-block;
+  margin: 10px;
 }
 
 .recipes:hover {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .andrew-nav {

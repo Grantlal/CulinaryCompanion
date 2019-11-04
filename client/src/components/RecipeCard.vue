@@ -2,15 +2,15 @@
   <div class="card-expansion">
     <md-card>
       <md-card-media>
-        <img
-          src="https://www.edamam.com/web-img/fd1/fd1afed1849c44f5185720394e363b4e.jpg"
+       <!--- <img
+			 src="{{this.image}}"
           alt="People"
-        />
+        /> --->
       </md-card-media>
 
       <md-card-header>
-        <div class="md-title">Chicken Gravy</div>
-        <div class="md-subhead">Low-Carb, Low-Sugar</div>
+        <div class="md-title">{{this.title}}</div>
+        <div class="md-subhead">{{this.dietLabels}}</div>
       </md-card-header>
 
       <md-card-expand>
@@ -33,13 +33,7 @@
         </md-card-actions>
 
         <md-card-expand-content>
-          <md-card-content>
-            <p>4 cups chicken bones and wings</p>
-            <p>2 tablespoons unsalted butter, softened</p>
-            <p>2 tablespoons all-purpose flour</p>
-            <p>4 cups homemade bruce and eric bromberg's chicken stock, or store-bought low-sodium chicken stock</p>
-            <p>1 tablespoon fresh thyme leaves</p>
-            <p>Coarse salt and freshly ground black pepper</p>
+          <md-card-content>{{this.instructions}}
           </md-card-content>
         </md-card-expand-content>
       </md-card-expand>
@@ -50,6 +44,7 @@
 <script>
 export default {
   name: "CardExpansion",
+  props: ['title', 'dietLabels', 'healthLabels', 'instructions', 'image'],
   data () {
 	  return {
 		  fav: true
