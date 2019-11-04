@@ -27,7 +27,7 @@
       >
         <md-toolbar class="md-transparent" md-elevation="0">
           <span>Filters</span>
-
+          
           <div class="md-toolbar-section-end">
             <md-button class="md-icon-button md-dense" @click="toggleMenu">
               <md-icon>keyboard_arrow_left</md-icon>
@@ -37,7 +37,7 @@
 
         <md-list>
           <md-list-item>
-            <md-checkbox v-model="opt1" value="1">Filter Option 1</md-checkbox>
+            <md-checkbox v-model="opt1" value="1" id="firstHamburger">Filter Option 1</md-checkbox>
             <h1>{{opt1}}</h1>
           </md-list-item>
 
