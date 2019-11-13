@@ -234,7 +234,6 @@ export default {
           }
           console.log("Recipes:");
           console.log(this.recipes);
-          return response.firstRecipe;
         } else {
           this.recipeExample = "Search is null";
         }
