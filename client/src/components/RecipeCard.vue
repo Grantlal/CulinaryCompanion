@@ -2,14 +2,14 @@
   <div class="card-expansion">
     <md-card>
       <md-card-media>
-       <!--- <img
-			 src="{{this.image}}"
+        <img
+          :src="this.image"
           alt="People"
-        /> --->
+        />
       </md-card-media>
 
       <md-card-header>
-        <div class="md-title">{{this.title}}</div>
+        <div class="md-title" style="overflow: hidden; height: 30px;">{{this.title}}</div>
         <div class="md-subhead">{{this.dietLabels}}</div>
       </md-card-header>
 
@@ -33,8 +33,7 @@
         </md-card-actions>
 
         <md-card-expand-content>
-          <md-card-content>{{this.instructions}}
-          </md-card-content>
+          <md-card-content>{{this.instructions}}</md-card-content>
         </md-card-expand-content>
       </md-card-expand>
     </md-card>
@@ -44,23 +43,23 @@
 <script>
 export default {
   name: "CardExpansion",
-  props: ['title', 'dietLabels', 'healthLabels', 'instructions', 'image'],
-  data () {
-	  return {
-		  fav: true
-	  }
+  props: ["title", "dietLabels", "healthLabels", "instructions", "image"],
+  data() {
+    return {
+      fav: true
+    };
   },
   methods: {
-	  favorite() {
-		  this.fav = !this.fav;
-	  }
+    favorite() {
+      this.fav = !this.fav;
+    }
   }
 };
 </script>
 
 <style scoped>
 .card-expansion {
-	max-height: auto;
+  max-height: auto;
 }
 
 .md-card {

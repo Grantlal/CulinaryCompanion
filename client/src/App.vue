@@ -182,8 +182,14 @@
       </md-app-drawer>
 
       <md-app-content id="cont">
-        <div id="recipecards">
-          <RecipeCard class="recipes" title="title" dietLabels="dietlabels" instructions="instructions" image="https://www.edamam.com/web-img/fd1/fd1afed1849c44f5185720394e363b4e.jpg"></RecipeCard>
+        <div id="recipecards" v-for="rec in recipes" v-bind:key="rec.calories" >
+              <RecipeCard
+                class="recipes"
+                :title="rec.recipe.label"
+                :dietLabels="rec.dietlabels"
+                :instructions="rec.ingredientLines"
+                :image="rec.recipe.image"
+              ></RecipeCard>
         </div>
       </md-app-content>
     </md-app>
@@ -194,8 +200,6 @@
 import { UriBuilder } from "uribuilder";
 import RecipeCard from "./components/RecipeCard.vue";
 
-var recipes = null;
-
 export default {
   data() {
     return {
@@ -205,10 +209,10 @@ export default {
       optchicken: null,
       opt3: null,
       opt4: null,
-	  query: null,
+      query: null,
 
       recipeExample: null,
-      recipe1: null,
+      recipes: [],
       menuVisible: false
     };
   },
@@ -218,18 +222,22 @@ export default {
     },
     getRecipe: async function(event) {
       try {
-        //Saving this to know this call has worked :)
-		// https://api.edamam.com/search?q=chicken&app_id=9a0c84a3&app_key=45bb00840fe3a634d119f86ff069c199
         if (this.query !== null) {
-          var url = `http://localhost:8080/recipes/?search=${this.query}`;
+          //this.query = this.query.replace(/\s+/g, '');
+          var url = `http://localhost:8080/recipes/?search=${String(
+            this.query
+          )}`;
           const response = await fetch(url).then(resp => resp.json());
-          console.log(response);
-		  recipes = response.firstRecipe;
+          this.recipes = [];
+          for (var index in response) {
+            this.recipes.push(response[index]);
+          }
+          console.log("Recipes:");
+          console.log(this.recipes);
           return response.firstRecipe;
-		}
-		else {
-			this.recipeExample = "Search is null";
-		}
+        } else {
+          this.recipeExample = "Search is null";
+        }
       } catch (error) {
         this.recipeExample = "Error connecting to database.";
         console.error(error);
@@ -253,6 +261,10 @@ export default {
 
 .md-menu {
   background-color: white;
+}
+
+#recipecards {
+	display: inline-block;
 }
 
 .recipes {
