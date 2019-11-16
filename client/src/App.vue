@@ -1,29 +1,77 @@
 <template>
   <div class="page-container" style="height:100%;">
-    <md-app>
-      <md-app-toolbar
-        class="md-primary"
-        style="background-image: linear-gradient(to right, rgb(229, 247, 228), rgb(201, 250, 197));"
-      >
-        <md-button class="md-icon-button" id="leftMenuButton" @click="toggleMenu" v-if="!menuVisible">
+    <md-app md-waterfall md-mode="fixed">
+      <md-app-toolbar class="md-primary andrew-nav">
+        <md-button
+          style="float:left:"
+          class="md-icon-button"
+          @click="toggleMenu"
+          v-if="!menuVisible"
+        >
           <md-icon>menu</md-icon>
         </md-button>
         <md-button class="md-icon-button" v-if="menuVisible">
           <md-icon style="opacity: 0;">menu</md-icon>
         </md-button>
         <span id="title">Culinary Companion</span>
-        <md-tabs>
-      <md-tab id="tab-recipe" md-label="Recipes"></md-tab>
-      <md-tab id="tab-Techniques" md-label="Techniques"></md-tab>
-      <md-tab id="tab-profile" md-label="Profile"></md-tab>
-      <md-tab id="tab-favorites" md-label="Favorites"></md-tab>
-    </md-tabs>
+
+        <md-menu class="bc-trans" style="margin-left: 10px;" md-size="medium" md-align-trigger>
+          <md-button md-menu-trigger>Recipes</md-button>
+          <md-menu-content>
+            <md-menu-item class="bc-white">Advanced Search</md-menu-item>
+            <md-menu-item class="bc-white" v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+            <md-menu-item class="bc-white">Surprise Me!</md-menu-item>
+          </md-menu-content>
+        </md-menu>
+
+        <md-menu class="bc-trans" md-size="medium" md-align-trigger>
+          <md-button md-menu-trigger>Techniques</md-button>
+          <md-menu-content>
+            <md-menu-item class="bc-white">Advanced Search</md-menu-item>
+            <md-menu-item class="bc-white" v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+            <md-menu-item class="bc-white">Surprise Me!</md-menu-item>
+          </md-menu-content>
+        </md-menu>
+
+        <md-menu class="bc-trans" md-size="medium" md-align-trigger>
+          <md-button md-menu-trigger>Favorites</md-button>
+          <md-menu-content>
+            <md-menu-item class="bc-white">Advanced Search</md-menu-item>
+            <md-menu-item class="bc-white" v-on:click.native="data = 'asdf'">Browse</md-menu-item>
+            <md-menu-item class="bc-white">Surprise Me!</md-menu-item>
+          </md-menu-content>
+        </md-menu>
+
+        <div style="margin-left: auto; min-width: 300px; max-width:500px;">
+          <md-field style="min-width: 300px; max-width:500px;">
+            <label>Search Recipes</label>
+            <md-input v-model="query"></md-input>
+          </md-field>
+        </div>
+
+        <md-button
+          class="md-raised"
+          v-on:click.native="getRecipe()"
+          style="background-image: linear-gradient(to bottom left, rgb(229, 247, 228), rgb(201, 250, 197));"
+        >GO!</md-button>
+
+        <md-menu class="bc-trans" md-size="medium" md-align-trigger>
+          <md-button style="width: 100%;" md-menu-trigger>
+            <md-icon
+              style="border: 1px solid black; border-radius: 100%; height: 100%; width: 100%;"
+            >person</md-icon>
+          </md-button>
+          <md-menu-content>
+            <md-menu-item class="bc-white">Account Settings</md-menu-item>
+            <md-menu-item class="bc-white">Logout</md-menu-item>
+          </md-menu-content>
+        </md-menu>
       </md-app-toolbar>
 
       <md-app-drawer
         :md-active.sync="menuVisible"
         md-persistent="full"
-        style="background-image: linear-gradient(to bottom left, rgb(229, 247, 228), rgb(201, 250, 197)); max-height:100%;"
+        style="width: 15%; min-width: min-content; max-width: 400px; background-image: linear-gradient(to bottom left, rgb(229, 247, 228), rgb(201, 250, 197)); max-height:100%;"
       >
         <md-toolbar class="md-transparent" md-elevation="0">
           <span>Filters</span>
@@ -35,34 +83,114 @@
           </div>
         </md-toolbar>
 
-        <md-list>
+        <md-list class="bc-trans">
           <md-list-item>
-            <md-checkbox v-model="opt1" value="1" id="firstHamburger">Filter Option 1</md-checkbox>
-            <h1>{{opt1}}</h1>
+            <md-checkbox id="lactosebox" v-model="opt1">
+              <label
+                @click="opt1=!opt1"
+                for="lactosebox"
+                v-if="opt1"
+                style="cursor:pointer; text-decoration: line-through;"
+              >Lactose</label>
+              <label
+                @click="opt1=!opt1"
+                for="lactosebox"
+                v-if="!opt1"
+                style="cursor:pointer;"
+              >Lactose</label>
+            </md-checkbox>
+          </md-list-item>
+
+          <md-list-item md-expand>
+            <span class="md-list-item-text">Meats</span>
+
+            <md-list slot="md-expand" style="margin-left: 50px;" class="bc-trans">
+              <md-checkbox id="porkbox" v-model="optpork">
+                <label
+                  @click="optpork=!optpork"
+                  for="porkbox"
+                  v-if="optpork"
+                  style="cursor:pointer; text-decoration: line-through;"
+                >Pork</label>
+                <label
+                  @click="optpork=!optpork"
+                  for="porkbox"
+                  v-if="!optpork"
+                  style="cursor:pointer;"
+                >Pork</label>
+              </md-checkbox>
+              <md-checkbox id="beefbox" v-model="optbeef">
+                <label
+                  @click="optbeef=!optbeef"
+                  for="beefbox"
+                  v-if="optbeef"
+                  style="cursor:pointer; text-decoration: line-through;"
+                >Beef</label>
+                <label
+                  @click="optbeef=!optbeef"
+                  for="beefbox"
+                  v-if="!optbeef"
+                  style="cursor:pointer;"
+                >Beef</label>
+              </md-checkbox>
+              <md-checkbox id="chickenbox" v-model="optchicken">
+                <label
+                  @click="optchicken=!optchicken"
+                  for="chickenbox"
+                  v-if="optchicken"
+                  style="cursor:pointer; text-decoration: line-through;"
+                >Chicken</label>
+                <label
+                  @click="optchicken=!optchicken"
+                  for="chickenbox"
+                  v-if="!optchicken"
+                  style="cursor:pointer;"
+                >Chicken</label>
+              </md-checkbox>
+            </md-list>
           </md-list-item>
 
           <md-list-item>
-            <md-checkbox v-model="opt2" value="2">Filter Option 1</md-checkbox>
-            <h1>{{opt2}}</h1>
+            <md-checkbox id="peanutbox" v-model="opt3">
+              <label
+                @click="opt3=!opt3"
+                for="peanutbox"
+                v-if="opt3"
+                style="cursor:pointer; text-decoration: line-through;"
+              >Nuts</label>
+              <label @click="opt3=!opt3" for="peanutbox" v-if="!opt3" style="cursor:pointer;">Nuts</label>
+            </md-checkbox>
           </md-list-item>
 
           <md-list-item>
-            <md-checkbox v-model="opt3" value="3">Filter Option 1</md-checkbox>
-
-            <h1>{{opt3}}</h1>
-          </md-list-item>
-
-          <md-list-item>
-            <md-checkbox v-model="opt4" value="4">Filter Option 1</md-checkbox>
-
-            <h1>{{opt4}}</h1>
+            <md-checkbox id="diabeticbox" v-model="opt4">
+              <label
+                @click="opt4=!opt4"
+                for="diabeticbox"
+                v-if="opt4"
+                style="cursor:pointer; text-decoration: line-through;"
+              >Diabetic</label>
+              <label
+                @click="opt4=!opt4"
+                for="diabeticbox"
+                v-if="!opt4"
+                style="cursor:pointer;"
+              >Diabetic</label>
+            </md-checkbox>
           </md-list-item>
         </md-list>
       </md-app-drawer>
 
       <md-app-content id="cont">
-        <h4>{{recipeExample}}</h4>
-        <md-button v-on:click.native="getRecipe()" class="md-raised">Find CHICKEN</md-button>
+        <div id="recipecards" v-for="rec in recipes" v-bind:key="rec.calories" >
+              <RecipeCard
+                class="recipes"
+                :title="rec.recipe.label"
+                :dietLabels="rec.dietlabels"
+                :instructions="rec.ingredientLines"
+                :image="rec.recipe.image"
+              ></RecipeCard>
+        </div>
       </md-app-content>
     </md-app>
   </div>
@@ -70,22 +198,21 @@
 
 <script>
 import { UriBuilder } from "uribuilder";
+import RecipeCard from "./components/RecipeCard.vue";
 
 export default {
   data() {
     return {
-      array: [],
-      boolean: false,
-      string: null,
-      novalue: null,
-      disabled: true,
-      obj1: { name: "obj1" },
-      obj2: { name: "obj2" },
-      obj: null,
-      indeterminate: true,
+      opt1: null,
+      optpork: null,
+      optbeef: null,
+      optchicken: null,
+      opt3: null,
+      opt4: null,
+      query: null,
 
       recipeExample: null,
-      recipe1: null,
+      recipes: [],
       menuVisible: false
     };
   },
@@ -95,13 +222,21 @@ export default {
     },
     getRecipe: async function(event) {
       try {
-        //Saving this to know this call has worked :)
-        // https://api.edamam.com/search?q=chicken&app_id=9a0c84a3&app_key=45bb00840fe3a634d119f86ff069c199
-        const url = `http://localhost:8080/recipes`;
-        const response = await fetch(url).then(resp => resp.json());
-        console.log(response);
-        this.recipeExample = response.firstRecipe;
-        return response.firstRecipe;
+        if (this.query !== null) {
+          //this.query = this.query.replace(/\s+/g, '');
+          var url = `http://localhost:8080/recipes/?search=${String(
+            this.query
+          )}`;
+          const response = await fetch(url).then(resp => resp.json());
+          this.recipes = [];
+          for (var index in response) {
+            this.recipes.push(response[index]);
+          }
+          console.log("Recipes:");
+          console.log(this.recipes);
+        } else {
+          this.recipeExample = "Search is null";
+        }
       } catch (error) {
         this.recipeExample = "Error connecting to database.";
         console.error(error);
@@ -109,11 +244,50 @@ export default {
     }
   },
   name: "app",
-  components: {}
+  components: {
+    RecipeCard
+  }
 };
 </script>
 
 <style>
+.bc-trans {
+  background-color: transparent !important;
+}
+.bc-white {
+  background-color: white !important;
+}
+
+.md-menu {
+  background-color: white;
+}
+
+#recipecards {
+	display: inline-block;
+}
+
+.recipes {
+  display: inline-block;
+  margin: 10px;
+}
+
+.recipes:hover {
+  cursor: pointer;
+}
+
+.andrew-nav {
+  display: flex;
+  background-image: linear-gradient(
+    to right,
+    rgb(229, 247, 228),
+    rgb(201, 250, 197)
+  );
+}
+
+.md-theme-default {
+  color: black !important;
+  background-color: transparent;
+}
 #title {
   min-height: 70px;
   font-size: 50px;
@@ -142,10 +316,6 @@ table {
   width: 230px;
   max-width: calc(100vw - 125px);
 }
-
-
-
-.el-menu,
 body,
 html {
   height: 100%;
