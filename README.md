@@ -9,9 +9,9 @@
 
           cd client
 
-### Installation
+### Installation and Set-up
 
--   Build front-end environment
+####  Build front-end environment
     You may or may not have to install uribuilder, Hopefully my package-lock change fixed that. Who knows though, keeping it for sanitys sake.
 
             cd client
@@ -22,11 +22,7 @@
             npm install uribuilder
 
             npm install vue-material
-
-### Back-end
-
--   Go here :)
-
+#### Running front-end
 ```
 https://github.com/Grantlal/CulinaryCompanionAPI
 ```
@@ -38,3 +34,8 @@ https://github.com/Grantlal/CulinaryCompanionAPI
           npm run dev
 
 > You can also run `cd springboot_vue/frontend;npm run build`
+#### Testing
+You'll have to have the front-end running and then run cypress with the following command
+```
+npm run cypress:open
+```
