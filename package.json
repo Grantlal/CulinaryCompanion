@@ -61,8 +61,8 @@
     "cypress:open": "cypress open"
   },
   "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
+    "node": ">= 13.0.0",
+    "npm": ">= 6.0.0"
   },
   "author": "baoer.gu",
   "license": "MIT"
