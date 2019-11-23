@@ -9,6 +9,9 @@ var chalk = require('chalk')
 var webpack = require('webpack')
 var config = require('../config')
 var webpackConfig = require('./webpack.prod.conf')
+const mkdirp = require('mkdirp')
+const fs = require("fs")
+
 
 var spinner = ora('building for production...')
 spinner.start()
@@ -37,4 +40,9 @@ rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
       '  Opening index.html over file:// won\'t work.\n'
     ))
   })
+  mkdirp(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
+    if (err) throw err
+    // path exists unless there was an error
+    fs.closeSync(fs.openSync(path.join(config.build.assetsRoot, config.build.assetsSubDirectory, '.gitkeep'), 'w'));
+  });
 })
