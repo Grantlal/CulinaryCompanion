@@ -58,7 +58,8 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "start": "node config/prod.env.js"
   },
   "engines": {
     "node": ">= 6.0.0",
