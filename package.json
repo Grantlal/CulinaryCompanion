@@ -16,7 +16,7 @@
     "css-loader": "^0.28.11",
     "cssnano": "^3.10.0",
     "curvejs": "^0.3.4",
-    "cypress": "^3.5.0",
+    //"cypress": "^3.5.0",
     "element-ui": "^1.4.13",
     "eslint": "^4.18.2",
     "eslint-config-standard": "^6.2.1",
@@ -87,8 +87,8 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
-    "cypress:open": "cypress open",
-    "heroku-postbuild": "npm run build",
+    //"cypress:open": "cypress open",
+    //"heroku-postbuild": "npm run build",
     "start": "node prod.env.js"
   },
   "engines": {
