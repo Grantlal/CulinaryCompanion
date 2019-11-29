@@ -18,7 +18,7 @@ module.exports = {
     //port: 5000,
     autoOpenBrowser: true,
     assetsSubDirectory: 'statics',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
     cssSourceMap: false
   }
 }
