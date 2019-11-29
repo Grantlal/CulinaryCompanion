@@ -89,7 +89,7 @@
     "build": "node build/build.js",
     "cypress:open": "cypress open",
     "postinstall": "if test \"$NODE_ENV\" = \"production\" ; then npm run build ; fi ",
-    "start": "node config/prod.env.js"
+    "start": "node prod.env.js"
   },
   "engines": {
     "node": ">= 6.0.0",
