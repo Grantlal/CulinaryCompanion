@@ -7,7 +7,7 @@ module.exports = {
     index: path.resolve(__dirname, '../dist/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'statics',
-    assetsPublicPath: './',
+    assetsPublicPath: '',
     productionSourceMap: true,
     productionGzip: false,
     productionGzipExtensions: ['js', 'css'],
@@ -18,7 +18,7 @@ module.exports = {
     //port: 5000,
     autoOpenBrowser: true,
     assetsSubDirectory: 'statics',
-    assetsPublicPath: './',
+    assetsPublicPath: '',
     cssSourceMap: false
   }
 }
