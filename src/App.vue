@@ -182,9 +182,9 @@
       </md-app-drawer>
 
       <md-app-content id="cont">
-<!--<iframe width="420" height="315"
+<iframe width="420" height="315"
   src="https://www.youtube.com/embed/Tkq6HxV38n0">
-  </iframe> -->
+  </iframe>
         <div id="recipecards" v-for="rec in recipes" v-bind:key="rec.calories" >
               <RecipeCard
                 class="recipes"
