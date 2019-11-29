@@ -88,7 +88,7 @@
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "cypress:open": "cypress open",
-    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build",
+    "heroku-postbuild": "npm run build",
     "start": "node prod.env.js"
   },
   "engines": {
