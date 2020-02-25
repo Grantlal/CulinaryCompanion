@@ -1,5 +1,5 @@
 ### Getting Started
-
+-   NOTE this is no longer the maintained version of the front-end for the culinary companion
 -   install Node.js / NPM
     https://nodejs.org/en/
 
