@@ -44,7 +44,7 @@
     "moment": "^2.24.0",
     "opn": "^5.5.0",
     "postcss-loader": "^2.1.6",
-    "shelljs": "^0.7.6",
+    "shelljs": "^0.8.5",
     "style-loader": "^0.16.1",
     "url-loader": "^0.5.8",
     "vue": "^2.6.10",
